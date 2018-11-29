@@ -14,8 +14,7 @@ RUN dotnet publish "WebApplication2.fsproj" -c Release -o /app
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
-EXPOSE 5000
-EXPOSE 44365
-ENV ASPNETCORE_URLS http://+:5000
+
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "WebApplication2.dll","--urls", "http://0.0.0.0:5000"]
+ENTRYPOINT ["dotnet", "WebApplication2.dll"]
+ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
